@@ -28,4 +28,5 @@ if ($rule){
     Write-Host("No need to create")
 } else {
     New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $sapports
+    New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -Protocol UDP -LocalPort $sapports
 }
