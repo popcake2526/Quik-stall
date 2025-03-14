@@ -1,12 +1,4 @@
-$services = @(
-    "1434", # SQL
-    "1434", # SQL 
-    "30000",  # SLD
-    #"30010",  # SLD din to pero di daw kailangan
-    "40000", # License manager
-    "40020", # Authentication servce
-    "8100" # Dispatcher
-)
+
 
 $services = @(
     "FDResPub", # Function Discovery Resource Publication
@@ -22,5 +14,18 @@ foreach ($service in $services) {
 }
 
 # Create Inbound Firewall Rule
-$sapports = "1433-1434,30000"
-New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -EdgeTraversalPolicy Allow -Protocol TCP -LocalPort @sapports
+$sapports = @(
+    "1433", # SQL
+    "1434", # SQL 
+    "30000",  # SLD
+    "30010",  # SLD din to
+    "40000", # License manager
+    "40020", # Authentication servce
+    "8100" # Dispatcher
+)
+
+if ($rule){
+    Write-Host("No need to create")
+} else {
+    New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $sapports
+}
