@@ -1,8 +1,8 @@
-﻿# Make sure winget is available - this will force install winget
-if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-    Write-Host "Winget is not installed. Please install it first."
-    exit
-}
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+Remove-Item -Path "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+winget source reset --force
+winget source -add -n winget -a "https://cdb.winget.microsoft.com/cache"
+winget source update
 
 # List of apps i want to install
 $apps = @(
