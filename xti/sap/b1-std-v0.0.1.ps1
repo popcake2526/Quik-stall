@@ -1,4 +1,4 @@
-
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 $services = @(
     "FDResPub", # Function Discovery Resource Publication
@@ -17,16 +17,15 @@ foreach ($service in $services) {
 $sapports = @(
     "1433", # SQL
     "1434", # SQL 
-    "30000",  # SLD
-    "30010",  # SLD din to
     "40000", # License manager
-    "40020", # Authentication servce
-    "8100" # Dispatcher
+    "40020", # Authentication service
+    # "8100" # Browser Access
+    "443" # Web Client
 )
 
 if ($rule){
     Write-Host("No need to create")
 } else {
     New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $sapports
-    New-NetFirewallRule -DisplayName "allow-sap-ports-tcp" -Direction Inbound -Action Allow -Protocol UDP -LocalPort $sapports
+    New-NetFirewallRule -DisplayName "allow-sap-ports-udp" -Direction Inbound -Action Allow -Protocol UDP -LocalPort $sapports
 }
