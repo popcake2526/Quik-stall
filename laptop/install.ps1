@@ -16,7 +16,7 @@ $apps = @(
     "Bitwarden.Bitwarden",
     "Notion.Notion",
     "Git.Git",
-    "Microsoft.PowerShell.Preview",
+    "Microsoft.PowerShell",
     "Viber.Viber",
     "tailscale.tailscale",
     "Microsoft.VCRedist.2015+.x64",
