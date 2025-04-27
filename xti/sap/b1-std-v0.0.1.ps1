@@ -1,5 +1,3 @@
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-
 $services = @(
     "FDResPub", # Function Discovery Resource Publication
     "Dnscache", # DNS Client
@@ -20,7 +18,7 @@ $sapports = @(
     "40000", # License manager
     "40020", # Authentication service
     # "8100" # Browser Access
-    "443" # Web Client
+    # "443" # Web Client
 )
 
 if ($rule){
